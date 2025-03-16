@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Quiz & Performance Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #333;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .btn {
+            background: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h2>Student Quiz</h2>
+        <form id="quizForm">
+            <div class="question">
+                <p>1. What is the capital of India?</p>
+                <input type="radio" name="q1" value="Delhi"> Delhi<br>
+                <input type="radio" name="q1" value="Mumbai"> Mumbai<br>
+                <input type="radio" name="q1" value="Chennai"> Chennai<br>
+            </div>
+
+            <div class="question">
+                <p>2. Who discovered gravity?</p>
+                <input type="radio" name="q2" value="Newton"> Isaac Newton<br>
+                <input type="radio" name="q2" value="Einstein"> Albert Einstein<br>
+                <input type="radio" name="q2" value="Galileo"> Galileo Galilei<br>
+            </div>
+
+            <div class="question">
+                <p>3. What is H2O?</p>
+                <input type="radio" name="q3" value="Water"> Water<br>
+                <input type="radio" name="q3" value="Oxygen"> Oxygen<br>
+                <input type="radio" name="q3" value="Hydrogen"> Hydrogen<br>
+            </div>
+
+            <button type="button" class="btn" onclick="calculateScore()">Submit Quiz</button>
+        </form>
+
+        <div id="result" style="display:none;">
+            <h3>Your Score: <span id="score"></span>/3</h3>
+            <canvas id="scoreChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        function calculateScore() {
+            let correctAnswers = { q1: "Delhi", q2: "Newton", q3: "Water" };
+            let score = 0;
+
+            let userAnswers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value,
+                q2: document.querySelector('input[name="q2"]:checked')?.value,
+                q3: document.querySelector('input[name="q3"]:checked')?.value
+            };
+
+            for (let key in userAnswers) {
+                if (userAnswers[key] === correctAnswers[key]) {
+                    score++;
+                }
+            }
+
+            document.getElementById("score").innerText = score;
+            document.getElementById("result").style.display = "block";
+
+            generateChart(score);
+        }
+
+        function generateChart(score) {
+            let ctx = document.getElementById('scoreChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Total Questions", "Correct Answers", "Incorrect Answers"],
+                    datasets: [{
+                        label: "Performance",
+                        data: [3, score, 3 - score],
+                        backgroundColor: ["#007BFF", "#28A745", "#DC3545"]
+                    }]
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
+
