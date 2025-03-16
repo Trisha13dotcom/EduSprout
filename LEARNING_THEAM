@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Material</title>
+    <script>
+        function loadMaterial() {
+            let intelligenceType = document.getElementById("intelligenceType").value;
+            let content = {
+                "Visual-Spatial": "Explore learning through diagrams, charts, and videos!",
+                "Linguistic": "Read stories and engage in creative writing exercises!",
+                "Logical-Mathematical": "Solve puzzles, play with numbers, and do experiments!"
+            };
+            document.getElementById("material").innerText = content[intelligenceType];
+        }
+    </script>
+</head>
+<body>
+    <h2>Customized Learning Material</h2>
+    <label>Select your intelligence type:</label>
+    <select id="intelligenceType" onchange="loadMaterial()">
+        <option value="">Select</option>
+        <option value="Visual-Spatial">Visual-Spatial</option>
+        <option value="Linguistic">Linguistic</option>
+        <option value="Logical-Mathematical">Logical-Mathematical</option>
+    </select>
+    <p id="material"></p>
+</body>
+</html>
