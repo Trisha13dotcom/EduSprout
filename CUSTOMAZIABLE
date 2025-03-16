@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customizable UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: background 0.5s ease-in-out;
+            color: white;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        .theme-selector {
+            margin: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        
+        #spiderman { background-color: red; color: white; }
+        #football { background-color: green; color: white; }
+        #barbie { background-color: pink; color: white; }
+    </style>
+</head>
+<body>
+
+    <h2>Select Your Theme</h2>
+    <div class="theme-selector">
+        <button id="spiderman" onclick="changeTheme('spiderman')">Spider-Man</button>
+        <button id="football" onclick="changeTheme('football')">Football</button>
+        <button id="barbie" onclick="changeTheme('barbie')">Barbie</button>
+    </div>
+
+    <script>
+        function changeTheme(theme) {
+            if (theme === 'spiderman') {
+                document.body.style.backgroundImage = "url('https://wallpaperaccess.com/full/1123615.jpg')";
+                document.body.style.backgroundSize = "cover";
+                document.body.style.color = "white";
+            } 
+            else if (theme === 'football') {
+                document.body.style.backgroundImage = "url('https://wallpapercave.com/wp/wp7114510.jpg')";
+                document.body.style.backgroundSize = "cover";
+                document.body.style.color = "white";
+            } 
+            else if (theme === 'barbie') {
+                document.body.style.backgroundImage = "url('https://wallpapercave.com/wp/wp2456463.jpg')";
+                document.body.style.backgroundSize = "cover";
+                document.body.style.color = "black";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
