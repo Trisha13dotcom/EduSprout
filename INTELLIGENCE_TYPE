@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Intelligence Assessment</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { color: green; }
+        .question { margin-bottom: 15px; }
+        .question label { display: block; }
+        button { padding: 10px; background: green; color: white; border: none; cursor: pointer; }
+        button:hover { background: darkgreen; }
+        #result { margin-top: 20px; font-weight: bold; color: blue; }
+    </style>
+</head>
+<body>
+
+    <h2>Assessment: Find Your Strengths!</h2>
+    <p>Answer the following questions to determine your intelligence type.</p>
+
+    <div class="question" data-type="Linguistic">
+        <label>1. I pride myself on having a large vocabulary.</label>
+        <input type="radio" name="q1" value="1"> 1
+        <input type="radio" name="q1" value="2"> 2
+        <input type="radio" name="q1" value="3"> 3
+        <input type="radio" name="q1" value="4"> 4
+        <input type="radio" name="q1" value="5"> 5
+    </div>
+
+    <div class="question" data-type="Logical-Mathematical">
+        <label>2. Using numbers and numerical symbols is easy for me.</label>
+        <input type="radio" name="q2" value="1"> 1
+        <input type="radio" name="q2" value="2"> 2
+        <input type="radio" name="q2" value="3"> 3
+        <input type="radio" name="q2" value="4"> 4
+        <input type="radio" name="q2" value="5"> 5
+    </div>
+
+    <div class="question" data-type="Musical">
+        <label>3. Music is very important to me in daily life.</label>
+        <input type="radio" name="q3" value="1"> 1
+        <input type="radio" name="q3" value="2"> 2
+        <input type="radio" name="q3" value="3"> 3
+        <input type="radio" name="q3" value="4"> 4
+        <input type="radio" name="q3" value="5"> 5
+    </div>
+
+    <div class="question" data-type="Visual-Spatial">
+        <label>4. I always know where I am in relation to my home.</label>
+        <input type="radio" name="q4" value="1"> 1
+        <input type="radio" name="q4" value="2"> 2
+        <input type="radio" name="q4" value="3"> 3
+        <input type="radio" name="q4" value="4"> 4
+        <input type="radio" name="q4" value="5"> 5
+    </div>
+
+    <div class="question" data-type="Kinesthetic">
+        <label>5. I consider myself an athlete.</label>
+        <input type="radio" name="q5" value="1"> 1
+        <input type="radio" name="q5" value="2"> 2
+        <input type="radio" name="q5" value="3"> 3
+        <input type="radio" name="q5" value="4"> 4
+        <input type="radio" name="q5" value="5"> 5
+    </div>
+
+    <button onclick="calculateScore()">Submit</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateScore() {
+            let scores = {
+                "Linguistic": 0,
+                "Logical-Mathematical": 0,
+                "Musical": 0,
+                "Visual-Spatial": 0,
+                "Kinesthetic": 0,
+                "Interpersonal": 0,
+                "Intrapersonal": 0,
+                "Naturalist": 0
+            };
+
+            let questions = document.querySelectorAll(".question");
+            let answered = false;
+
+            questions.forEach((q, index) => {
+                let checkedValue = document.querySelector(`input[name="q${index + 1}"]:checked`);
+                if (checkedValue) {
+                    let value = parseInt(checkedValue.value);
+                    let category = q.dataset.type;
+                    scores[category] += value;
+                    answered = true;  // Mark that at least one question was answered
+                }
+            });
+
+            let highestType;
+            if (answered) {
+                highestType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            } else {
+                // Pick a random intelligence type if no answer is selected
+                let types = Object.keys(scores);
+                highestType = types[Math.floor(Math.random() * types.length)];
+            }
+
+            document.getElementById("result").innerText = `Your dominant intelligence type is: ${highestType}`;
+        }
+    </script>
+
+</body>
+</html>
+
