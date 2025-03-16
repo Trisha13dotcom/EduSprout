@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracker</title>
+    <script>
+        function logMood() {
+            let mood = document.getElementById("mood").value;
+            document.getElementById("moodLog").innerText = "You are feeling: " + mood;
+        }
+    </script>
+</head>
+<body>
+    <h2>Mood Checker</h2>
+    <label>How do you feel about this quiz?</label>
+    <select id="mood" onchange="logMood()">
+        <option value="">Select</option>
+        <option value="Excited">Excited</option>
+        <option value="Overwhelmed">Overwhelmed</option>
+        <option value="Nervous">Nervous</option>
+    </select>
+    <p id="moodLog"></p>
+</body>
+</html>
