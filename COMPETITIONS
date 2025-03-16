@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Generated Competition Updates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .competition-card {
+            background: white;
+            padding: 15px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Select Your Interest</h2>
+    <select id="interest">
+        <option value="design">Design</option>
+        <option value="videography">Videography</option>
+        <option value="coding">Coding</option>
+        <option value="science">Science</option>
+        <option value="entrepreneurship">Entrepreneurship</option>
+    </select>
+    <button onclick="fetchCompetition()">Find Competitions</button>
+
+    <div id="competition-info"></div>
+
+    <script>
+        function fetchCompetition() {
+            let interest = document.getElementById("interest").value;
+            let competitionData = {
+                "design": {
+                    name: "India UI/UX Challenge",
+                    date: "June 15-17, 2025",
+                    venue: "Bangalore, Karnataka",
+                    apply: "https://designindia.com/apply",
+                    prize: "₹4,00,000"
+                },
+                "videography": {
+                    name: "National Short Film Fest",
+                    date: "September 10-12, 2025",
+                    venue: "Mumbai, Maharashtra",
+                    apply: "https://indianfilmfest.com/register",
+                    prize: "₹8,00,000"
+                },
+                "coding": {
+                    name: "CodeSprint India Hackathon",
+                    date: "August 5-7, 2025",
+                    venue: "Hyderabad, Telangana",
+                    apply: "https://codesprintindia.com/signup",
+                    prize: "₹6,50,000 + Internship"
+                },
+                "science": {
+                    name: "Young Innovators Science Fair",
+                    date: "December 1-3, 2025",
+                    venue: "IIT Delhi, Delhi",
+                    apply: "https://sciencefairindia.com/join",
+                    prize: "₹12,00,000 + Research Grant"
+                },
+                "entrepreneurship": {
+                    name: "Startup India Pitch Challenge",
+                    date: "October 20-22, 2025",
+                    venue: "IIM Ahmedabad, Gujarat",
+                    apply: "https://startupindia.com/apply",
+                    prize: "₹20,00,000 + Mentorship"
+                }
+            };
+
+            let selectedCompetition = competitionData[interest];
+
+            document.getElementById("competition-info").innerHTML = `
+                <div class="competition-card">
+                    <h3>${selectedCompetition.name}</h3>
+                    <p><strong>Date:</strong> ${selectedCompetition.date}</p>
+                    <p><strong>Venue:</strong> ${selectedCompetition.venue}</p>
+                    <p><strong>How to Apply:</strong> <a href="${selectedCompetition.apply}" target="_blank">Click Here</a></p>
+                    <p><strong>Prize Pool:</strong> ${selectedCompetition.prize}</p>
+                </div>
+            `;
+        }
+    </script>
+
+</body>
+</html>
+
